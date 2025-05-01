@@ -1,0 +1,15 @@
+apiVersion: karpenter.sh/v1alpha5
+kind: Provisioner
+metadata:
+  name: gpu
+spec:
+  requirements:
+    - key: node.kubernetes.io/instance-type
+      operator: In
+      values: [p4d.24xlarge, p5.48xlarge]
+    - key: nvidia.com/gpu
+      operator: Exists
+  limits:
+    resources:
+      cpu: "1000"
+      nvidia.com/gpu: "100"

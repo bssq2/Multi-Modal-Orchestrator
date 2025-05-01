@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: volcano-scheduler
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: volcano
+      component: scheduler
+  template:
+    metadata:
+      labels:
+        app: volcano
+        component: scheduler
+    spec:
+      containers:
+        - name: scheduler
+          image: volcano-sh/scheduler:v1.5.1
